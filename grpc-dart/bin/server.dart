@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:grpc/grpc.dart';
 
 import '../../protocol_buffers/dart/greeter.pbgrpc.dart';
@@ -26,7 +28,20 @@ class GreeterService extends GreeterServiceBase {
 }
 
 void main() async {
+  // loads the certificate file
+  final privateKey = File('../../protocol_buffers/certificates/server.key').readAsBytesSync();
+  final certificateChain = File('../../protocol_buffers/certificates/server.crt').readAsBytesSync();
+
+  // creates the server
   var server = Server([GreeterService()]);
-  await server.serve(port: 8080);
+
+  // starts the server
+  await server.serve(
+    port: 8080,
+    security: ServerTlsCredentials(
+      certificate: certificateChain,
+      privateKey: privateKey,
+    ),
+  );
   print('Dart server listening on port ${server.port}...');
 }

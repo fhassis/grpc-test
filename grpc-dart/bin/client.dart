@@ -1,12 +1,22 @@
+import 'dart:io';
+
 import 'package:grpc/grpc.dart';
 
 import '../../protocol_buffers/dart/greeter.pbgrpc.dart';
 
 void main() async {
+  // loads the certificate file
+  final trustedCerts = File('../../protocol_buffers/certificates/server.crt').readAsBytesSync();
+
+  // creates the communication channel
   final channel = ClientChannel(
     'localhost',
     port: 8080,
-    options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    options: ChannelOptions(
+      credentials: ChannelCredentials.secure(
+        certificates: trustedCerts,
+      ),
+    ),
   );
 
   // create the stub to handle the greeter api
