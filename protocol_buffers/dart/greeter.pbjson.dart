@@ -42,12 +42,12 @@ final $typed_data.Uint8List counterStreamReplyDescriptor = $convert.base64Decode
 const NamesReply$json = const {
   '1': 'NamesReply',
   '2': const [
-    const {'1': 'name', '3': 1, '4': 3, '5': 9, '10': 'name'},
+    const {'1': 'names', '3': 1, '4': 3, '5': 9, '10': 'names'},
   ],
 };
 
 /// Descriptor for `NamesReply`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List namesReplyDescriptor = $convert.base64Decode('CgpOYW1lc1JlcGx5EhIKBG5hbWUYASADKAlSBG5hbWU=');
+final $typed_data.Uint8List namesReplyDescriptor = $convert.base64Decode('CgpOYW1lc1JlcGx5EhQKBW5hbWVzGAEgAygJUgVuYW1lcw==');
 @$core.Deprecated('Use emptyDescriptor instead')
 const Empty$json = const {
   '1': 'Empty',

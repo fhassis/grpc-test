@@ -152,17 +152,17 @@ class CounterStreamReply extends $pb.GeneratedMessage {
 
 class NamesReply extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'NamesReply', createEmptyInstance: create)
-    ..pPS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..pPS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'names')
     ..hasRequiredFields = false
   ;
 
   NamesReply._() : super();
   factory NamesReply({
-    $core.Iterable<$core.String>? name,
+    $core.Iterable<$core.String>? names,
   }) {
     final _result = create();
-    if (name != null) {
-      _result.name.addAll(name);
+    if (names != null) {
+      _result.names.addAll(names);
     }
     return _result;
   }
@@ -188,7 +188,7 @@ class NamesReply extends $pb.GeneratedMessage {
   static NamesReply? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$core.String> get name => $_getList(0);
+  $core.List<$core.String> get names => $_getList(0);
 }
 
 class Empty extends $pb.GeneratedMessage {

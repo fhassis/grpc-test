@@ -21,7 +21,7 @@ class GreeterService extends GreeterServiceBase {
   @override
   Future<NamesReply> getNames(ServiceCall call, Empty request) async {
     const names = ['John', 'Mary', 'Peter'];
-    return NamesReply(name: names);
+    return NamesReply(names: names);
   }
 }
 

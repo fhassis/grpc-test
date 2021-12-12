@@ -29,7 +29,7 @@ message CounterStreamReply {
 
 // The Name reply
 message NamesReply {
-    repeated string name = 1;
+    repeated string names = 1;
 }
 
 // User defined empty parameter
