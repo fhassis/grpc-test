@@ -15,17 +15,17 @@ export 'greeter.pb.dart';
 
 class GreeterClient extends $grpc.Client {
   static final _$sayHello = $grpc.ClientMethod<$0.HelloRequest, $0.HelloReply>(
-      '/Greeter/SayHello',
+      '/greeter.Greeter/SayHello',
       ($0.HelloRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.HelloReply.fromBuffer(value));
   static final _$counterStream =
       $grpc.ClientMethod<$0.Empty, $0.CounterStreamReply>(
-          '/Greeter/CounterStream',
+          '/greeter.Greeter/CounterStream',
           ($0.Empty value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.CounterStreamReply.fromBuffer(value));
   static final _$getNames = $grpc.ClientMethod<$0.Empty, $0.NamesReply>(
-      '/Greeter/GetNames',
+      '/greeter.Greeter/GetNames',
       ($0.Empty value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.NamesReply.fromBuffer(value));
 
@@ -53,7 +53,7 @@ class GreeterClient extends $grpc.Client {
 }
 
 abstract class GreeterServiceBase extends $grpc.Service {
-  $core.String get $name => 'Greeter';
+  $core.String get $name => 'greeter.Greeter';
 
   GreeterServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.HelloRequest, $0.HelloReply>(
