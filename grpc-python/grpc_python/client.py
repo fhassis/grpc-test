@@ -2,13 +2,13 @@ import logging
 import asyncio
 import grpc
 
-from autocode.helloworld_pb2_grpc import GreeterStub
-from autocode.helloworld_pb2 import HelloRequest
+from grpc_python.grpc_auto.greeter_pb2_grpc import GreeterStub
+from grpc_python.grpc_auto.greeter_pb2 import HelloRequest
 
 
 async def main() -> None:
 
-    async with grpc.aio.insecure_channel('localhost:50051') as channel:
+    async with grpc.aio.insecure_channel('localhost:9090') as channel:
 
         greeter_stub = GreeterStub(channel)
 

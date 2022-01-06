@@ -2,8 +2,8 @@ import logging
 import asyncio
 import grpc
 
-from autocode.helloworld_pb2_grpc import add_GreeterServicer_to_server
-from services.greeter_service import Greeter
+from grpc_python.grpc_auto.greeter_pb2_grpc import add_GreeterServicer_to_server
+from grpc_python.services.greeter_service import Greeter
 
 
 async def serve() -> None:
