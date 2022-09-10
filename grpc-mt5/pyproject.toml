@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "mt5-grpc"
+version = "0.1.0"
+description = "A gateway to interact with a local MetaTrader 5 instance over gRPC."
+authors = ["fhassis <fhassis2@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+grpcio = "^1.43.0"
+MetaTrader5 = "^5.0.36"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+black = "^21.12b0"
+grpcio-tools = "^1.43.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

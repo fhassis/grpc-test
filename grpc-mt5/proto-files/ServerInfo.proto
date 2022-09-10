@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package metatrader;
+
+service ServerInfo {
+
+    // Requests the server time
+    rpc GetServerTime (Empty) returns (ServerTimeRes);
+
+    // Adds a symbol into Market Watch
+    rpc AddToMarketWatch(MarketWatchReq) returns (MarketWatchRes);
+
+    // Removes a symbol from Market Watch
+    rpc RemoveFromMarketWatch(MarketWatchReq) returns (MarketWatchRes);
+
+    // Get Market Watch symbol list
+    rpc GetMarketWatch(Empty) returns (MarketWatchListRes);
+}
+
+message Empty {}
+   
+message ServerTimeRes {
+    int64 serverTime = 1;
+    float terminalPing = 2;
+}
+
+message MarketWatchReq {
+    string symbol = 1;
+}
+
+message MarketWatchRes {
+    bool status = 1;
+}
+
+message MarketWatchListRes {
+    repeated string symbols = 1;
+}
