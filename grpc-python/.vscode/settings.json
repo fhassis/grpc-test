@@ -1,3 +1,3 @@
 {
-    "terminal.integrated.env.windows": {"PYTHONPATH": "${workspaceFolder};${workspaceFolder}/grpc_python/grpc_auto"}
+    "terminal.integrated.env.windows": {"PYTHONPATH": "${workspaceFolder};${workspaceFolder}/grpc_autocode"}
 }
