@@ -72,7 +72,7 @@ if __name__ == "__main__":
     run(
         main(
             host="localhost",
-            port=9091,
+            port=9090,
             cert_root_path=server_root,
         )
     )

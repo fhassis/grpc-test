@@ -76,7 +76,7 @@ if __name__ == "__main__":
     run(
         serve(
             host="localhost",
-            port=9091,
+            port=9090,
             key_path=server_key,
             chain_path=server_chain,
         )
