@@ -58,7 +58,10 @@ async def serve(
 if __name__ == "__main__":
 
     # configures the logger
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(
+        format="%(asctime)s %(levelname)s %(name)s | %(message)s",
+        level=logging.INFO,
+    )
 
     # loads ssl certificates for encrypted and authenticated connections
     server_key = Path(__file__).parents[2] / "tls-certificates" / "server.key"
