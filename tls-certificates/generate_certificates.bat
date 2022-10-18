@@ -4,4 +4,4 @@ REM This script generates a self signed certificate with openssl for development
 
 set TLS_OUT=.
 
-openssl req -newkey rsa:2048 -nodes -keyout %TLS_OUT%/server.key -x509 -out %TLS_OUT%/server.crt
+openssl req -x509 -nodes -newkey rsa:4096 -keyout %TLS_OUT%/key.pem -out %TLS_OUT%/cert.pem
