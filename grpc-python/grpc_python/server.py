@@ -17,8 +17,8 @@ from services.greeter_service import Greeter
 async def serve(
     host: str,
     port: int,
-    key_path: Optional[Path] = None,
-    chain_path: Optional[Path] = None,
+    private_key_path: Optional[Path] = None,
+    tls_cert_path: Optional[Path] = None,
 ) -> None:
     """
     Starts a grpc server.
@@ -32,10 +32,10 @@ async def serve(
     add_GreeterServicer_to_server(Greeter(), server)
 
     # configures the server port
-    if key_path and chain_path:
+    if private_key_path and tls_cert_path:
         logging.info("Using secure ssl channel")
-        private_key = open(key_path, "rb").read()
-        certificate_chain = open(chain_path, "rb").read()
+        private_key = open(private_key_path, "rb").read()
+        certificate_chain = open(tls_cert_path, "rb").read()
         server_credentials = ssl_server_credentials(((private_key, certificate_chain),))
         server.add_secure_port(address, server_credentials)
     else:
@@ -64,20 +64,20 @@ if __name__ == "__main__":
     )
 
     # loads ssl certificates for encrypted and authenticated connections
-    server_key = Path(__file__).parents[2] / "tls-certificates" / "server.key"
-    if not server_key.exists():
-        raise FileNotFoundError(f"Unable to find server key file: {server_key}")
+    private_key = Path(__file__).parents[2] / "tls-certificates" / "key.pem"
+    if not private_key.exists():
+        raise FileNotFoundError(f"Unable to find server key file: {private_key}")
 
-    server_chain = Path(__file__).parents[2] / "tls-certificates" / "server.crt"
-    if not server_chain.exists():
-        raise FileNotFoundError(f"Unable to find server chain file: {server_chain}")
+    tls_cert = Path(__file__).parents[2] / "tls-certificates" / "cert.pem"
+    if not tls_cert.exists():
+        raise FileNotFoundError(f"Unable to find server chain file: {tls_cert}")
 
     # run the server
     run(
         serve(
             host="localhost",
             port=9090,
-            key_path=server_key,
-            chain_path=server_chain,
+            private_key_path=private_key,
+            tls_cert_path=tls_cert,
         )
     )

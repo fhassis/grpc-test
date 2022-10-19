@@ -17,7 +17,7 @@ from autocode.greeter_pb2 import HelloRequest
 async def main(
     host: str,
     port: int,
-    cert_root_path: Optional[Path] = None,
+    tls_cert_path: Optional[Path] = None,
 ) -> None:
     """
     Interacts to a grpc server.
@@ -25,9 +25,9 @@ async def main(
     address = f"{host}:{port}"
 
     # creates the communication channel
-    if cert_root_path:
+    if tls_cert_path:
         logging.info("Using secure ssl channel")
-        server_credentials = open(cert_root_path, "rb").read()
+        server_credentials = open(tls_cert_path, "rb").read()
         ssl_credentials = ssl_channel_credentials(server_credentials)
         channel = secure_channel(address, ssl_credentials)
     else:
@@ -64,15 +64,15 @@ if __name__ == "__main__":
     )
 
     # loads ssl certificates for encrypted and authenticated connections
-    server_root = Path(__file__).parents[2] / "tls-certificates" / "server.crt"
-    if not server_root.exists():
-        raise FileNotFoundError(f"Unable to find server root file: {server_root}")
+    tls_cert = Path(__file__).parents[2] / "tls-certificates" / "cert.pem"
+    if not tls_cert.exists():
+        raise FileNotFoundError(f"Unable to find server root file: {tls_cert}")
 
     # executes the main application
     run(
         main(
             host="localhost",
             port=9090,
-            cert_root_path=server_root,
+            tls_cert_path=tls_cert,
         )
     )
