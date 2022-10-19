@@ -77,7 +77,7 @@ if __name__ == "__main__":
         serve(
             host="localhost",
             port=9090,
-            private_key_path=private_key,
-            tls_cert_path=tls_cert,
+            # private_key_path=private_key,
+            # tls_cert_path=tls_cert,
         )
     )
