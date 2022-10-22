@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:grpc/grpc.dart';
 
-import '../../protocol_buffers/dart/greeter.pbgrpc.dart';
+import '../lib/autocode/greeter.pbgrpc.dart';
 
 class GreeterService extends GreeterServiceBase {
   @override
