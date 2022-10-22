@@ -1,1 +1,6 @@
-docker run -d -v "$(pwd)"/envoy.yaml:/etc/envoy/envoy.yaml:ro -p 8080:8080 -p 9901:9901 envoyproxy/envoy:v1.22.0
+
+IMAGE=envoyproxy/envoy:v1.22.0
+PORT=8080
+CONFIG="$(pwd)"/mount
+
+docker run -it -v $CONFIG:/etc/envoy -p $PORT:8080 $IMAGE

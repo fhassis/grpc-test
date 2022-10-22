@@ -29,19 +29,15 @@ static_resources:
                 max_age: "1728000"
                 expose_headers: custom-header-1,grpc-status,grpc-message
           http_filters:
-          - name: envoy.filters.http.grpc_web
-          - name: envoy.filters.http.cors
-          - name: envoy.filters.http.router
-      transport_socket:
-          name: envoy.transport_sockets.tls
-          typed_config:
-            "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
-            common_tls_context:
-              tls_certificates:
-              - certificate_chain:
-                  filename: /etc/envoy/server.crt
-                private_key:
-                  filename: /etc/envoy/server.key
+            - name: envoy.filters.http.grpc_web
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.http.grpc_web.v3.GrpcWeb
+            - name: envoy.filters.http.cors
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.http.cors.v3.Cors
+            - name: envoy.filters.http.router
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
   clusters:
   - name: mt5_grpc
     connect_timeout: 0.25s
