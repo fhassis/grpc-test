@@ -4,6 +4,7 @@ from typing import Optional
 from grpc.aio import server as grpc_server
 from grpc import ssl_server_credentials
 from pathlib import Path
+import sys
 
 # adding autocode folder due to limitations in code generation
 import sys
@@ -63,21 +64,27 @@ if __name__ == "__main__":
         level=logging.INFO,
     )
 
-    # loads ssl certificates for encrypted and authenticated connections
-    private_key = Path(__file__).parents[2] / "tls-certificates" / "key.pem"
-    if not private_key.exists():
-        raise FileNotFoundError(f"Unable to find server key file: {private_key}")
+    if len(sys.argv) == 2 and sys.argv[1] == "--tls":
+        # loads ssl certificates for encrypted and authenticated connections
+        private_key = Path(__file__).parents[2] / "tls-certificates" / "key.pem"
+        if not private_key.exists():
+            raise FileNotFoundError(f"Unable to find server key file: {private_key}")
 
-    tls_cert = Path(__file__).parents[2] / "tls-certificates" / "cert.pem"
-    if not tls_cert.exists():
-        raise FileNotFoundError(f"Unable to find server chain file: {tls_cert}")
+        tls_cert = Path(__file__).parents[2] / "tls-certificates" / "cert.pem"
+        if not tls_cert.exists():
+            raise FileNotFoundError(f"Unable to find server chain file: {tls_cert}")
+
+    else:
+        # uses insecure channel
+        private_key = None
+        tls_cert = None
 
     # run the server
     run(
         serve(
             host="localhost",
             port=9090,
-            # private_key_path=private_key,
-            # tls_cert_path=tls_cert,
+            private_key_path=private_key,
+            tls_cert_path=tls_cert,
         )
     )

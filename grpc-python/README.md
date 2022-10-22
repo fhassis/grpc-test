@@ -35,3 +35,12 @@ $ pip install grpcio
 # How to Compile
 
 To generate client and server files from .proto files, execute the script _compile\_protos.bat_.
+
+# How to Execute
+
+Run the steps below to execute. The argument _--tls_ (to use a tls encrypted channel) is optional:
+```
+cd grpc-python/grpc_python
+poetry run python server.py --tls
+```
+This will start a grpc server on _localhost:9090_.

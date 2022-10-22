@@ -4,6 +4,7 @@ from typing import Optional
 from grpc.aio import insecure_channel, secure_channel
 from grpc import ssl_channel_credentials
 from pathlib import Path
+import sys
 
 # adding autocode folder due to limitations in code generation
 import sys
@@ -63,10 +64,15 @@ if __name__ == "__main__":
         level=logging.INFO,
     )
 
-    # loads ssl certificates for encrypted and authenticated connections
-    tls_cert = Path(__file__).parents[2] / "tls-certificates" / "cert.pem"
-    if not tls_cert.exists():
-        raise FileNotFoundError(f"Unable to find server root file: {tls_cert}")
+    if len(sys.argv) == 2 and sys.argv[1] == "--tls":
+        # loads ssl certificates for encrypted and authenticated connections
+        tls_cert = Path(__file__).parents[2] / "tls-certificates" / "cert.pem"
+        if not tls_cert.exists():
+            raise FileNotFoundError(f"Unable to find server root file: {tls_cert}")
+
+    else:
+        # uses insecure channel
+        tls_cert = None
 
     # executes the main application
     run(
