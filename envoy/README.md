@@ -1,6 +1,8 @@
 # Envoy Proxy Configuration for GRPC-WEB
 
-This Envoy configuration server grpcweb requests in port *8080*, and proxies the requests to/from a grpc server at port *9090*.
+This Envoy configuration:
+- serves grpcweb requests to/from browser at port *8080*, and;
+- proxies the requests to/from a local grpc server at port *9090* configured without TLS encryption.
 
 ## Envoy Configuration Files
 
