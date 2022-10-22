@@ -1,4 +1,0 @@
-{
-    "python.formatting.provider": "black",
-    "terminal.integrated.env.windows": {"PYTHONPATH": "${workspaceFolder};${workspaceFolder}/grpc_autocode"}
-}
