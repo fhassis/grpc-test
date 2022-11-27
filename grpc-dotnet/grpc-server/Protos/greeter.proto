@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package greeter;
+
+// The greeting service definition.
+service Greeter {
+    // Sends a greeting
+    rpc SayHello (HelloRequest) returns (HelloReply);
+
+    // Sends a counter every second
+    rpc CounterStream (Empty) returns (stream CounterStreamReply);
+
+    // Sends a list of names
+    rpc GetNames (Empty) returns (NamesReply);
+}
+  
+// The request message containing the user's name.
+message HelloRequest {
+    string name = 1;
+}
+  
+// The response message containing the greetings
+message HelloReply {
+    string message = 1;
+}
+
+// The Counter stream reply
+message CounterStreamReply {
+    int32 counter = 1;
+}
+
+// The Name reply
+message NamesReply {
+    repeated string names = 1;
+}
+
+// User defined empty parameter
+message Empty {}
